@@ -1,0 +1,121 @@
+# Initialisation - A la création d'un repo, et que celui-ci n'est pas encore initialisé
+# Dans le répertoire que vous aurez choisi
+# + création d'un fichier "readme"
+git init
+
+git add .
+git commit -m "Votre message"
+git branch -M master
+git remote add origin urlgit (git@github.com:votrenom/votrerepo.git)
+git push -u origin master
+
+
+
+# Clonage d'un repository distant
+git clone urlgri (git@github.com:votrenom/votrerepo.git) [repertoire]
+
+# Exemple
+git clone https://github.com/jperrouault-school-job/fev-2022-ajc.git .
+
+
+# Vérifier les modifications
+git status
+
+
+# Constituer un commit
+git add .
+git add /repertoire/fichier # si vous voulez qu'un seul fichier, ou qu'un seul répertoire
+
+
+# Commit - Créer une nouvelle révision
+git commit -m "Votre message"
+
+# Envoyer vos commits sur le repository distant
+git push
+
+
+# Exemples de commandes
+git add .
+git commit -m "Mon commit ici"
+git push
+
+
+# Pour vérifier s'il y a des modifications à récupérer
+git fetch
+git status
+
+
+# Pour récupérer les modifications
+git pull
+
+# Exemple complet
+git add .
+git commit -m "Mon superbe message"
+git push # qui n'a pas fonctionner
+
+# J'ai le choix de faire un pull direct ... et éventuellement régler les conflits
+git pull
+
+# Ou alors, je la joue plus safe en faisant un stash
+git stash
+git pull
+git stash pop
+
+# S'il y a un conflit ... Il faut que je le règle
+git add .
+git commit -m "Conflit OK"
+git push
+
+
+# En cas de doute - avant de faire un pull - vous pouvez mettre en réserve vos modifications
+git add .
+git stash
+
+# Regarder la liste des stash
+git stash list
+
+# Récupérer un stash
+git stash pop
+git stash pop {id}
+git stash pop 0
+
+
+# Réinitialiser le repo local (supprimer toutes les modifications)
+git clean -fdx
+git reset --hard
+
+
+# /!\ Les commandes git se font sur la branche en cours
+
+# Récupérer le nom des branches locales (la branche en cours est préfixé d'une étoile)
+git branch
+
+# Récupérer le nom des branches distantes (la branche en cours est préfixé d'une étoile)
+git branch -r
+
+# Récupérer le nom de toutes les branches
+git branch -a
+
+# Créer une nouvelle branche
+git branch nombranche
+
+# Se déplacer vers une branche locale
+git checkout nombranche
+
+# Créer et se déplacer vers une nouvelle branche locale (raccourcis 2 commandes précédentes)
+git checkout -b nombranche
+
+# Se déplacer vers une branche distante (qui n'existe pas en local)
+git checkout --track origin/nombranche
+
+# Push d'une branche locale vers une branche distante qui n'existe pas encore (comme à l'initialisation)
+git push -u origin nombranche
+
+# Fusionner deux branches (les modifications de autrebranche viennent dans la branche en cours)
+git merge autrebranche
+
+# Supprimer une branche locale (il ne faut plus y être !)
+git branche -D nombranche
+
+# Supprimer une branche distante
+git push origin --delete nombranche
