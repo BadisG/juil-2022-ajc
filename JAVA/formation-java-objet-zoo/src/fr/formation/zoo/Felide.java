@@ -1,6 +1,6 @@
 package fr.formation.zoo;
 
-public class Felide extends Mammifere {
+public abstract class Felide extends Mammifere {
 	protected String nom;
 
 	public String getNom() {
@@ -18,5 +18,11 @@ public class Felide extends Mammifere {
 	@Override
 	public String toString() {
 		return "FELIDE";
+	}
+	
+	@Override
+	public void marcher() {
+		super.marcher();
+		System.out.println("Le félidé marche ...");
 	}
 }

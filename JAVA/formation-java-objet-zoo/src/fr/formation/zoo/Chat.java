@@ -24,4 +24,15 @@ public class Chat extends Felide {
 	public String toString() {
 		return "[" + super.toString() + "] Le chat " + this.nom;
 	}
+	
+	@Override
+	public void marcher() {
+		super.marcher();
+		System.out.println("Le chat marche à 4 pattes ...");
+	}
+
+	@Override
+	public void getType() {
+		System.out.println("Je suis un chat sans aucun doute !");
+	}
 }

@@ -1,14 +1,22 @@
 package fr.formation;
 
+import fr.formation.zoo.Animal;
 import fr.formation.zoo.Chat;
-import fr.formation.zoo.Mammifere;
+import fr.formation.zoo.Singe;
 
 public class ApplicationZoo {
 
 	public static void main(String[] args) {
-		Chat albert = new Chat();
+		Animal albert = new Chat();
+		Animal nono = new Singe();
 		
-		albert.setNom("Albert");
+		albert.marcher();
+		nono.marcher();
+		
+		albert.getType();
+		nono.getType();
+		
+//		albert.setNom("Albert");
 //		albert.dormir();
 		
 		System.out.println(albert);
