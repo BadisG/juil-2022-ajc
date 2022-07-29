@@ -14,4 +14,9 @@ public class Felide extends Mammifere {
 	public Felide() {
 		System.out.println("CREATION D'UN FELIDE");
 	}
+	
+	@Override
+	public String toString() {
+		return "FELIDE";
+	}
 }
