@@ -1,0 +1,57 @@
+// 1- Somme de deux nombres
+entier somme(entier a, entier b) {
+    // entier resultat = a + b;
+    // retour resultat;
+
+    retour a + b;
+}
+
+// 2- Multiplication (avec addition)
+entier multiplier(entier a, entier b) {
+    entier resultat = a;
+
+    // Gestion des 0
+    si (a == 0 OU b == 0) {
+        retour 0; // Si le programme arrive ici, multiplier s'arrêtera
+    }
+
+    // Boucle TantQue
+    Entier compteur = 1;
+    TantQue (compteur < b) {
+        // resultat = resultat + a;
+        resultat += a;
+
+        // On incrémente le compteur pour éviter les boucles infinies
+        // compteur = compteur + 1;
+        // compteur += 1;
+        compteur++;
+    }
+
+
+    // Boucle Pour
+    Pour (entier i = 1; i < b; i++) {
+        resultat += a;
+    }
+
+    retour resultat;
+}
+
+
+// 3- Puissance
+entier puissance(entier a, entier puissance) {
+    entier resultat = 1;
+
+    si (a == 0 ET puissance == 0) {
+        // TODO : lancer une erreur ...
+    }
+
+    si (a == 0) { // On peut le garder pour éviter les boucles non utiles
+        retour 0;
+    }
+
+    pour (entier i = 0; i < puissance; i++) {
+        resultat *= a;
+    }
+
+    retour resultat;
+}
