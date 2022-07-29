@@ -1,0 +1,23 @@
+- Types primitifs - ne sont pas des classes
+int					Entier
+short				Entier court
+byte				Entier très court
+long				Entier long
+float				Réel
+double				Réel long
+char				Caractère
+boolean			Booléen
+
+- Classes -
+Integer			Encapsule un entier
+Long				Encapsule un entier long
+Byte				Encapsule un entier très court
+Float				Encapsule un réel
+Double				Encapsule un réel long
+Char				Encapsule un caractère
+Boolean			Encapsule un booléen
+String				Chaine de caractères
+Collections		Ensemble de méthodes statiques pour les collections
+List<T>			Collection sous forme de liste
+ArrayList<T>		Liste sous forme de tableau
+LinkedList<T>	Liste sous forme de liste chainée
