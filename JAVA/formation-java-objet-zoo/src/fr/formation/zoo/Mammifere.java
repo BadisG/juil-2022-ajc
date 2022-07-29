@@ -1,9 +1,7 @@
 package fr.formation.zoo;
 
 public abstract class Mammifere extends Animal {
-	public void dormir() {
-		System.out.println("Le mammifere dort ...");
-	}
+	public abstract void dormir();
 	
 	@Override
 	public void marcher() {

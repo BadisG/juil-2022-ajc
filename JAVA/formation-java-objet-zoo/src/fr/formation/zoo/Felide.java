@@ -25,4 +25,9 @@ public abstract class Felide extends Mammifere {
 		super.marcher();
 		System.out.println("Le félidé marche ...");
 	}
+	
+	@Override
+	public void dormir() {
+		System.out.println("Le félidé dort ...");
+	}
 }

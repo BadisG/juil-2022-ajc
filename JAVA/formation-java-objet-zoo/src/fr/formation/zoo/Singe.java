@@ -11,4 +11,9 @@ public class Singe extends Mammifere {
 	public void getType() {
 		System.out.println("Je suis singe");
 	}
+
+	@Override
+	public void dormir() {
+		System.out.println("Le singe dort dans l'arbre");
+	}
 }
