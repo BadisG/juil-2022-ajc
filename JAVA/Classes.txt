@@ -17,7 +17,10 @@ Double				Encapsule un réel long
 Char				Encapsule un caractère
 Boolean			Encapsule un booléen
 String				Chaine de caractères
+
 Collections		Ensemble de méthodes statiques pour les collections
 List<T>			Collection sous forme de liste
 ArrayList<T>		Liste sous forme de tableau
 LinkedList<T>	Liste sous forme de liste chainée
+Map<K, E>			Collection sous forme de dictionnaire (K pour clé, E pour élément)
+HashMap<K, E>	Dictionnaire concret
