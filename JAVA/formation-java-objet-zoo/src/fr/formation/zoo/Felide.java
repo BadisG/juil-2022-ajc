@@ -1,6 +1,6 @@
 package fr.formation.zoo;
 
-public class Felide {
+public class Felide extends Mammifere {
 	protected String nom;
 
 	public String getNom() {
