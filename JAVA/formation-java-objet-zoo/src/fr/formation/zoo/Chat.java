@@ -35,4 +35,9 @@ public class Chat extends Felide {
 	public void getType() {
 		System.out.println("Je suis un chat sans aucun doute !");
 	}
+
+	@Override
+	public void chasser() {
+		System.out.println(this.nom + " chasse");
+	}
 }

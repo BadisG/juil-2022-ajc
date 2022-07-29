@@ -1,6 +1,6 @@
 package fr.formation.zoo;
 
-public abstract class Felide extends Mammifere {
+public abstract class Felide extends Mammifere implements Chasseur {
 	protected String nom;
 
 	public String getNom() {
