@@ -65,3 +65,70 @@ INNER JOIN client ON cli_id = cmd_client_id;
 SELECT pro_nom, com_note
 FROM produit
 LEFT JOIN commentaire ON com_produit_id = pro_id;
+
+
+
+-- Sélectionner tous les clients et leurs achats (nom du client, prenom du client, date de commande, id produit acheté [+ nom du produit acheté])
+-- nom du client, prénom 	-> table client
+-- date de commande		    -> table commande
+-- id du produit acheté	    -> table achat
+-- nom du produit			-> table produit
+
+SELECT
+    cli_nom,
+    cli_prenom,
+    cmd_date,
+    ach_produit_id
+FROM client
+INNER JOIN commande ON cmd_client_id = cli_id
+INNER JOIN achat ON ach_commande_id = cmd_id;
+
+SELECT
+    cli_nom,
+    cli_prenom,
+    cmd_date,
+    pro_id, -- ou ach_produit_id, puisque c'est les mêmes infos
+    pro_nom
+FROM client
+INNER JOIN commande ON cmd_client_id = cli_id
+INNER JOIN achat ON ach_commande_id = cmd_id
+INNER JOIN produit ON pro_id = ach_produit_id;
+
+
+-- Sélectionner tous les clients qui n'ont pas d'achat (nom du client, prenom du client)
+SELECT cli_nom, cli_prenom
+FROM client
+LEFT JOIN commande ON cmd_client_id = cli_id
+WHERE cmd_id IS NULL;
+
+
+-- Sélectionner les 2 derniers achats (date d'achat, nom du client, nom du produit, nom du fournisseur, note)
+-- > Avec les informations client, produit, fournisseur et éventuellement sa note
+SELECT
+    ach_date,
+    cli_nom,
+    pro_nom,
+    fou_nom,
+    com_note
+
+-- On part de la table achat
+FROM achat
+
+-- On va chercher les informations du client ... on passe par la table commande
+INNER JOIN commande ON cmd_id = ach_commande_id
+INNER JOIN client ON cli_id = cmd_client_id
+
+-- On va chercher les infos du produit
+INNER JOIN produit ON pro_id = ach_produit_id
+
+-- On va chercher les infos du fournisseurs
+INNER JOIN fournisseur ON fou_id = pro_fournisseur_id
+
+-- On va chercher les infos du commentaire éventuel
+LEFT JOIN commentaire ON com_produit_id = pro_id
+
+-- On tri sur la date décroissante
+ORDER BY ach_date DESC
+
+-- On prend les 2 premiers résultats
+LIMIT 2;
