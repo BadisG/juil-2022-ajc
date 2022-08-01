@@ -1,0 +1,12 @@
+Types de relations
+
+1 - 1			PAS DE TABLE DE CORRESPONDANCE		CHOISIR UNE DES DEUX TABLES POUR LA CLE ETRANGERE
+1 - n			PAS DE TABLE DE CORRESPONDANCE		LA CLE ETRANGERE IRA DANS LA TABLE RELATION 1
+n - 1			PAS DE TABLE DE CORRESPONDANCE		LA CLE ETRANGERE IRA DANS LA TABLE RELATION 1
+n - n			UNE TABLE DE CORRESPONDANCE
+
+Un fournisseur a plusieurs produits, un produit a un fournisseur
+					N										1
+
+Un produit a un fournisseurn, un fournisseur a plusieurs produits
+					1										N
