@@ -48,3 +48,20 @@ RIGHT JOIN client ON cli_id = com_client_id;
 SELECT com_note, cli_nom
 FROM client
 LEFT JOIN commentaire ON cli_id = com_client_id;
+
+
+
+-- Sélectionner le nom du produit avec le nom du fournisseur
+SELECT pro_nom, fou_nom
+FROM produit
+INNER JOIN fournisseur ON fou_id = pro_fournisseur_id;
+
+-- Sélectionner la date de la commande avec le nom du client
+SELECT cmd_date, cli_nom
+FROM commande
+INNER JOIN client ON cli_id = cmd_client_id;
+
+-- Sélectionner tous les produits (nom du produit), avec leur note si disponible
+SELECT pro_nom, com_note
+FROM produit
+LEFT JOIN commentaire ON com_produit_id = pro_id;
