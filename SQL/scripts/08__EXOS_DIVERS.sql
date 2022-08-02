@@ -59,19 +59,50 @@ SELECT MAX(pro_prix_vente) FROM produit;
 
 
 
-
-
-
 -- Première date de commande, dernière date de commande
+SELECT MIN(cmd_date) premiereDate, MAX(cmd_date) derniereDate FROM commande;
 
 -- Compter les commandes par client, et afficher le nb, le nom et le prénom du client
+SELECT
+    cli_nom,
+    cli_prenom,
+    COUNT(cmd_id)
+FROM client
+LEFT JOIN commande ON cmd_client_id = cli_id
+-- GROUP BY cli_nom, cli_prenom
+GROUP BY cli_id
+;
 
 -- Afficher le nom du produit, le prix de vente d'un produit avec sa promotion (prixvente - montant promo)
 -- > Afficher tous les prix de tous les produits
+SELECT
+    pro_nom,
+    (pro_prix_vente - COALESCE(pmt_montant, 0)) AS solution1,
+    COALESCE((pro_prix_vente - pmt_montant), pro_prix_vente) AS solution2
+FROM produit
+LEFT JOIN promotion ON pmt_produit_id = pro_id;
 
 -- Afficher le nom du client et son / ses commentaires (commentaire, et la note)
+SELECT
+    cli_nom,
+    com_commentaire,
+    com_note
+FROM client
+INNER JOIN commentaire ON com_client_id = cli_id;
 
 -- Compter le nombre de commentaire pour chaque client, avec le nom du client
+SELECT
+    cli_nom,
+    COUNT(com_id) AS nb
+FROM client
+LEFT JOIN commentaire ON com_client_id = cli_id;
+
 
 -- Lister les produits (nom, prix de vente)
 -- > Dont le prix de vente est inférieur au prix vendu (montant de achat)
+SELECT
+    pro_nom,
+    pro_prix_vente
+FROM produit
+INNER JOIN achat ON ach_produit_id = pro_id
+WHERE pro_prix_vente < ach_montant;
