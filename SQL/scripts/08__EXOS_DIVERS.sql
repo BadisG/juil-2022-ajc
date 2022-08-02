@@ -106,3 +106,45 @@ SELECT
 FROM produit
 INNER JOIN achat ON ach_produit_id = pro_id
 WHERE pro_prix_vente < ach_montant;
+
+
+-- Calculer par ID commande le CA (montant * quantite)
+-- > Ne garder QUE les CA > 500 euros
+SELECT SUM(ach_montant * ach_quantite) AS ca
+FROM achat
+GROUP BY ach_commande_id
+HAVING SUM(ach_montant * ach_quantite) > 500;
+
+-- Sélectionner tous les clients (nom, prénom) avec leur CA (montant achat * quantite)
+-- > Ranger par CA décroissant
+-- > Tous les clients, si CA inexistant : afficher 0 (COALESCE)
+SELECT
+    cli_nom,
+    cli_prenom,
+    COALESCE(
+      SUM(ach_montant * ach_quantite),
+      0 -- Afficher 0 si la somme est NULL
+    ) AS ca -- Renommer la colonne
+FROM client
+LEFT JOIN commande ON cmd_client_id = cli_id
+LEFT JOIN achat ON ach_commande_id = cmd_id
+GROUP BY cli_id
+ORDER BY ca DESC;
+
+-- Sélectionner les clients dont le CA est > 0
+-- > En ne prenant en compte QUE les produits qui ont une note > 4
+-- > Afficher le nom du client, le prénom, le CA et la note
+SELECT
+	cli_nom,
+    cli_prenom,
+    SUM(ach_montant * ach_quantite) AS ca,
+    AVG(com_note) AS note
+FROM client
+INNER JOIN commande ON cmd_client_id = cli_id
+INNER JOIN achat ON ach_commande_id = cmd_id
+INNER JOIN commentaire ON com_produit_id = ach_produit_id
+GROUP BY cli_id
+HAVING
+	SUM(ach_montant * ach_quantite) > 0
+    AND
+    AVG(com_note) > 4;
