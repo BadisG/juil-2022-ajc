@@ -24,4 +24,14 @@ ALTER TABLE client
     DROP COLUMN cli_adresse;
 
 
--- 
+-- Oups, on a oublié de mettre le numéro de tél dans l'adresse
+ALTER TABLE adresse
+    ADD COLUMN adr_telephone VARCHAR(20);
+
+UPDATE adresse
+SET adr_telephone = (SELECT cli_numero_telephone FROM client WHERE cli_id = adr_client_id);
+
+SELECT * FROM adresse;
+
+ALTER TABLE client
+    DROP COLUMN cli_numero_telephone;
