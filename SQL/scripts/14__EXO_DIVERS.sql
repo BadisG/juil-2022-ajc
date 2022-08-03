@@ -14,5 +14,14 @@ CREATE TABLE adresse (
 );
 
 -- Fabriquer les adresses à partir des données connues
+INSERT INTO adresse (adr_rue, adr_client_id)
+SELECT cli_adresse, cli_id
+FROM client
+WHERE cli_adresse IS NOT NULL;
 
 -- Supprimer la colonne cli_adresse
+ALTER TABLE client
+    DROP COLUMN cli_adresse;
+
+
+-- 
