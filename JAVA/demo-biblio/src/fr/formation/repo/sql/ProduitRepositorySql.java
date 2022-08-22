@@ -1,0 +1,46 @@
+package fr.formation.repo.sql;
+
+import java.util.List;
+
+import fr.formation.model.Produit;
+import fr.formation.repo.IProduitRepository;
+
+public class ProduitRepositorySql implements IProduitRepository {
+	@Override
+	public Produit findById(Integer id) {
+		if (id == 1) {
+			Produit monProduit = new Produit();
+			
+			monProduit.setId(id);
+			monProduit.setNom("Un produit au hasard");
+			
+			return monProduit;
+		}
+		
+		return null;
+	}
+
+	@Override
+	public List<Produit> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void save(Produit entity) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteById(Integer id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Produit findByNom(String nom) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+}
