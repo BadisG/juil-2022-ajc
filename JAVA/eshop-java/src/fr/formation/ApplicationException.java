@@ -35,7 +35,7 @@ public class ApplicationException {
 			if (saisie < 0) {
 				// Pour lever une Exception, utiliser le mot-clé "throw"
 //				throw new RuntimeException("La saisie est négative.");
-				throw new ChiffreNegatifException();
+				throw new ChiffreNegatifException(saisie);
 			}
 			
 			// Afficher ce nombre
@@ -56,7 +56,7 @@ public class ApplicationException {
 		}
 		
 		catch (ChiffreNegatifException cne) {
-			System.out.println("Le chiffre doit être positif.");
+			System.out.println("Le chiffre " + cne.getChiffre() + " doit être positif.");
 		}
 		
 //		catch (Exception ex) { // Ici, j'attrape TOUTES les exceptions
