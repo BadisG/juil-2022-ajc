@@ -8,7 +8,15 @@ import fr.formation.repo.IProduitRepository;
 public class ProduitRepositorySql implements IProduitRepository {
 	@Override
 	public Produit findById(Integer id) {
-		// TODO Auto-generated method stub
+		if (id == 1) {
+			Produit monProduit = new Produit();
+			
+			monProduit.setId(id);
+			monProduit.setNom("Un produit au hasard");
+			
+			return monProduit;
+		}
+		
 		return null;
 	}
 
