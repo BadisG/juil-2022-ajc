@@ -4,6 +4,8 @@ import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
+import fr.formation.exception.ChiffreNegatifException;
+
 public class ApplicationException {
 	
 	// Pour gérer les Exceptions
@@ -32,7 +34,8 @@ public class ApplicationException {
 			
 			if (saisie < 0) {
 				// Pour lever une Exception, utiliser le mot-clé "throw"
-				throw new RuntimeException("La saisie est négative.");
+//				throw new RuntimeException("La saisie est négative.");
+				throw new ChiffreNegatifException();
 			}
 			
 			// Afficher ce nombre
@@ -50,6 +53,10 @@ public class ApplicationException {
 		
 		catch (InputMismatchException | IllegalStateException ex) {
 			System.out.println("Je fais la même chose.");
+		}
+		
+		catch (ChiffreNegatifException cne) {
+			System.out.println("Le chiffre doit être positif.");
 		}
 		
 //		catch (Exception ex) { // Ici, j'attrape TOUTES les exceptions
