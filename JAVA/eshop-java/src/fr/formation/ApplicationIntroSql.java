@@ -51,13 +51,14 @@ public class ApplicationIntroSql {
 				// On ajoute le produit à la liste
 				produits.add(monProduit);
 				
-//				System.out.println( myResult.getString("pro_nom") );				
+//				System.out.println( myResult.getString("pro_nom") );
 			}
 			
 			
 			// Parcourir la liste des produits
 			for (Produit p : produits) {
 				System.out.println(p);
+				System.out.println("Fournisseur => " + p.getFournisseur().getId());
 			}
 			
 		}
