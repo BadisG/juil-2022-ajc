@@ -1,5 +1,8 @@
 package fr.formation.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import fr.formation.exception.IdNegativeException;
 import fr.formation.exception.ProduitNotFoundException;
 import fr.formation.model.Produit;
@@ -24,5 +27,16 @@ public class ProduitService {
 		
 		// On retourne le produit trouvé
 		return leProduit;
+	}
+	
+	public List<Produit> findAll() {
+		IProduitRepository repoProduit = new ProduitRepositorySql();
+		List<Produit> produits = repoProduit.findAll();
+		
+		if (produits == null) {
+			return new ArrayList<>();
+		}
+		
+		return produits;
 	}
 }
