@@ -1,18 +1,24 @@
 package fr.formation;
 
-import fr.formation.exception.IdNegativeException;
-import fr.formation.exception.ProduitNotFoundException;
-import fr.formation.model.Produit;
-import fr.formation.service.ProduitService;
+import fr.formation.model.Fournisseur;
+import fr.formation.service.FournisseurService;
 
 public class ApplicationFinale {
 	public static void main(String[] args) {
-		ProduitService srvProduit = new ProduitService();
+		FournisseurService srvFournisseur = new FournisseurService();
 		
-		// FindAll
-		for (Produit p : srvProduit.findAll()) {
-			System.out.println(p);
+		for (Fournisseur f : srvFournisseur.findAll()) {
+			System.out.println(f.getNom());
 		}
+		
+		
+		
+//		ProduitService srvProduit = new ProduitService();
+//		
+//		// FindAll
+//		for (Produit p : srvProduit.findAll()) {
+//			System.out.println(p);
+//		}
 		
 		// FindById
 //		try {
