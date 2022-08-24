@@ -1,7 +1,5 @@
 package fr.formation.repo.sql;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,40 +10,9 @@ import fr.formation.model.Fournisseur;
 import fr.formation.model.Produit;
 import fr.formation.repo.IProduitRepository;
 
-public class ProduitRepositorySql implements IProduitRepository {
-	private Connection connection = null;
-	
-	// Méthode pour se connecter
-	private Connection connect() throws SQLException {
-		// 1- Se connecter au serveur SGBD
-		this.connection = DriverManager.getConnection("jdbc:postgresql://127.0.0.1:5432/eshop", "postgres", "root");
-		
-		return this.connection;
-	}
-	
-	// Méthode pour exécuter une requête SQL
-	private PreparedStatement prepare(String query) throws SQLException {
-//		this.connect();
-//		return this.connection.prepareStatement(query);
-		
-		return this.connect().prepareStatement(query);
-	}
-	
-	// Méthode pour se déconnecter
-	private void disconnect() {
-		if (this.connection != null) {
-			try {
-				this.connection.close();
-			}
-			
-			catch (SQLException e) {
-				System.out.println("La déconnexion n'a pas fonctionné.");
-			}
-		}
-	}
-	
+public class ProduitRepositorySql extends AbstractRepositorySql<Produit> implements IProduitRepository {
 	// Méthode pour générer les produits / fournisseurs
-	private Produit map(ResultSet myResult) {
+	protected Produit map(ResultSet myResult) {
 		try {
 			// Pour chaque résultat, il faudra créer un nouveau Produit (java) et un nouveau Fournisseur
 			Produit monProduit = new Produit();
@@ -70,7 +37,6 @@ public class ProduitRepositorySql implements IProduitRepository {
 			return null;
 		}
 	}
-	
 	
 	@Override
 	public Produit findById(Integer id) {
