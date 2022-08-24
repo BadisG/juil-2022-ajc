@@ -6,6 +6,8 @@
 	<body>
 		<h1>Démonstration</h1>
 		
+		<button>LE BOUTON</button>
+		
 		<div th:if="${ error != null }">
 			ERREUR !
 			<p th:text="${ error }"></p>
@@ -16,5 +18,21 @@
 			<p>[[ ${ fournisseur.nom } ]]</p>
 			<p>[[ ${ fournisseur.responsable } ]]</p>
 		</div>
+		
+		<div id="demo-api">RIEN A VOIR ICI POUR LE MOMENT ...</div>
+		
+		
+		<script>
+			document.querySelector('button').addEventListener('click', async () => {
+				let fournisseur = await fetch('http://localhost:8080/api/fournisseur/2')
+					.then(resp => resp.json());
+				
+				
+				document.querySelector('#demo-api').innerHTML = fournisseur.nom;
+			});
+		</script>
+		
+		
+		
 	</body>
 </html>
