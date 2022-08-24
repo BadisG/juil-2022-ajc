@@ -1,0 +1,20 @@
+<html>
+	<head>
+		<title>Démonstration</title>
+	</head>
+	
+	<body>
+		<h1>Démonstration</h1>
+		
+		<div th:if="${ error != null }">
+			ERREUR !
+			<p th:text="${ error }"></p>
+		</div>
+		
+		<div th:if="${ error == null }">
+			<p>[[ ${ fournisseur.id } ]]</p>
+			<p>[[ ${ fournisseur.nom } ]]</p>
+			<p>[[ ${ fournisseur.responsable } ]]</p>
+		</div>
+	</body>
+</html>
