@@ -55,25 +55,59 @@ public class FournisseurRepositorySql extends AbstractRepositorySql<Fournisseur>
 	
 	@Override
 	public Fournisseur findById(Integer id) {
-		// TODO Auto-generated method stub
+		try {
+			PreparedStatement myStatement = this.prepare("SELECT * FROM fournisseur WHERE fou_id = ?");
+			
+			myStatement.setInt(1, id);
+			
+			ResultSet myResult = myStatement.executeQuery();
+			
+			if (myResult.next()) {
+				return this.map(myResult);
+			}
+		}
+		
+		catch (SQLException e) {
+			return null;			
+		}
+		
+		finally {
+			this.disconnect();
+		}
+		
 		return null;
 	}
 
 	@Override
 	public void save(Fournisseur entity) {
 		try {
+			PreparedStatement myStatement = null;
+			
 			if (entity.getId() == 0) { // INSERT
-				PreparedStatement myStatement = this.prepare("INSERT INTO fournisseur (fou_nom, fou_responsable) VALUES (?, ?)");
-				
-				myStatement.setString(1, entity.getNom());
-				myStatement.setString(2, entity.getResponsable());
-				
-				myStatement.executeUpdate();
+				myStatement = this.prepare("INSERT INTO fournisseur (fou_nom, fou_responsable) VALUES (?, ?)");
 			}
+			
+			else { // UPDATE
+				myStatement = this.prepare("UPDATE fournisseur SET "
+						+ "fou_nom = ?, "
+						+ "fou_responsable = ? "
+						+ "WHERE fou_id = ?");
+
+				myStatement.setInt(3, entity.getId());
+			}
+			
+			myStatement.setString(1, entity.getNom());
+			myStatement.setString(2, entity.getResponsable());
+			
+			myStatement.executeUpdate();
 		}
 		
 		catch (SQLException e) {
 			e.printStackTrace();
+		}
+		
+		finally {
+			this.disconnect();
 		}
 	}
 

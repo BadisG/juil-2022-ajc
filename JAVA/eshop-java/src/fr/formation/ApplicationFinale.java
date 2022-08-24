@@ -1,5 +1,6 @@
 package fr.formation;
 
+import fr.formation.exception.FournisseurNotFoundException;
 import fr.formation.exception.IdNegativeException;
 import fr.formation.model.Fournisseur;
 import fr.formation.service.FournisseurService;
@@ -17,15 +18,30 @@ public class ApplicationFinale {
 		}
 		
 		
-		Fournisseur monNouveauFournisseur = new Fournisseur();
-		monNouveauFournisseur.setNom("From JAVA");
-		monNouveauFournisseur.setResponsable("Je suis le responsable ici");
+//		Fournisseur monNouveauFournisseur = new Fournisseur();
+//		monNouveauFournisseur.setNom("From JAVA");
+//		monNouveauFournisseur.setResponsable("Je suis le responsable ici");
+//		
+//		srvFournisseur.save(monNouveauFournisseur);
 		
-		srvFournisseur.save(monNouveauFournisseur);
+		
+		try {
+			Fournisseur leFournisseurAModifier = srvFournisseur.findById(2);
+			leFournisseurAModifier.setNom("NEW NOM FROM JAVA");
+			srvFournisseur.save(leFournisseurAModifier);
+		}
+
+		catch (IdNegativeException e) {
+			System.out.println("Id incorrect.");
+		}
+
+		catch (FournisseurNotFoundException e) {
+			System.out.println("Fournisseur non trouvé.");
+		}
 		
 		
 		for (Fournisseur f : srvFournisseur.findAll()) {
-			System.out.println(f.getNom());
+			System.out.println(f.getId() + " " + f.getNom());
 		}
 		
 		

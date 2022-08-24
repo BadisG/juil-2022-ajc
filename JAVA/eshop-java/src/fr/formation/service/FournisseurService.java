@@ -3,6 +3,7 @@ package fr.formation.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.formation.exception.FournisseurNotFoundException;
 import fr.formation.exception.IdNegativeException;
 import fr.formation.exception.NotValidException;
 import fr.formation.model.Fournisseur;
@@ -20,6 +21,20 @@ public class FournisseurService {
 		}
 		
 		return fournisseurs;
+	}
+	
+	public Fournisseur findById(int id) throws IdNegativeException {
+		if (id <= 0) {
+			throw new IdNegativeException();
+		}
+		
+		Fournisseur fournisseur = repoFournisseur.findById(id);
+		
+		if (fournisseur == null) {
+			throw new FournisseurNotFoundException();
+		}
+		
+		return fournisseur;
 	}
 	
 	public void save(Fournisseur fournisseur) {
