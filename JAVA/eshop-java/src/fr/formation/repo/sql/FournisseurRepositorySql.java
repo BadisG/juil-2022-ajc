@@ -61,8 +61,20 @@ public class FournisseurRepositorySql extends AbstractRepositorySql<Fournisseur>
 
 	@Override
 	public void save(Fournisseur entity) {
-		// TODO Auto-generated method stub
+		try {
+			if (entity.getId() == 0) { // INSERT
+				PreparedStatement myStatement = this.prepare("INSERT INTO fournisseur (fou_nom, fou_responsable) VALUES (?, ?)");
+				
+				myStatement.setString(1, entity.getNom());
+				myStatement.setString(2, entity.getResponsable());
+				
+				myStatement.executeUpdate();
+			}
+		}
 		
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override

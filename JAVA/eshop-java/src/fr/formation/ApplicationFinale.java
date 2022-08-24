@@ -17,6 +17,13 @@ public class ApplicationFinale {
 		}
 		
 		
+		Fournisseur monNouveauFournisseur = new Fournisseur();
+		monNouveauFournisseur.setNom("From JAVA");
+		monNouveauFournisseur.setResponsable("Je suis le responsable ici");
+		
+		srvFournisseur.save(monNouveauFournisseur);
+		
+		
 		for (Fournisseur f : srvFournisseur.findAll()) {
 			System.out.println(f.getNom());
 		}

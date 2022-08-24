@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.formation.exception.IdNegativeException;
+import fr.formation.exception.NotValidException;
 import fr.formation.model.Fournisseur;
 import fr.formation.repo.IFournisseurRepository;
 import fr.formation.repo.sql.FournisseurRepositorySql;
@@ -19,6 +20,18 @@ public class FournisseurService {
 		}
 		
 		return fournisseurs;
+	}
+	
+	public void save(Fournisseur fournisseur) {
+		if (fournisseur.getNom() == null || fournisseur.getNom().isBlank()) {
+			throw new NotValidException();
+		}
+		
+		if (fournisseur.getResponsable() == null || fournisseur.getResponsable().isBlank()) {
+			throw new NotValidException();
+		}
+		
+		repoFournisseur.save(fournisseur);
 	}
 	
 	public void deleteById(int id) throws IdNegativeException {
