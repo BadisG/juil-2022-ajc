@@ -53,14 +53,6 @@ public class FournisseurRepositorySql extends AbstractRepositorySql<Fournisseur>
 		return fournisseurs;
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-
 	@Override
 	public Fournisseur findById(Integer id) {
 		// TODO Auto-generated method stub
@@ -75,8 +67,16 @@ public class FournisseurRepositorySql extends AbstractRepositorySql<Fournisseur>
 
 	@Override
 	public void deleteById(Integer id) {
-		// TODO Auto-generated method stub
+		try {
+			PreparedStatement myStatement = this.prepare("DELETE FROM fournisseur WHERE fou_id = ?");
+			
+			myStatement.setInt(1, id);
+			
+			myStatement.executeUpdate();
+		}
 		
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
-
 }

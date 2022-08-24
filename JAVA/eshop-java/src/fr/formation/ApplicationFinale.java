@@ -1,11 +1,21 @@
 package fr.formation;
 
+import fr.formation.exception.IdNegativeException;
 import fr.formation.model.Fournisseur;
 import fr.formation.service.FournisseurService;
 
 public class ApplicationFinale {
 	public static void main(String[] args) {
 		FournisseurService srvFournisseur = new FournisseurService();
+		
+		try {
+			srvFournisseur.deleteById(4);
+		}
+
+		catch (IdNegativeException e) {
+			System.out.println("L'id est pas bon.");
+		}
+		
 		
 		for (Fournisseur f : srvFournisseur.findAll()) {
 			System.out.println(f.getNom());
