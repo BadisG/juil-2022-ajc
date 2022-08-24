@@ -35,7 +35,7 @@ public class ApplicationCommande {
 		detail1.setMontant(p1.getPrixVente());
 		commande.getDetails().add(detail1);
 
-		Produit p2 = srvProduit.findById(1);
+		Produit p2 = srvProduit.findById(2);
 		CommandeDetail detail2 = new CommandeDetail();
 		
 		detail2.setProduit(p2);
