@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+
+<personnes>
+    <personne id="5">
+        <nom>PERROUAULT</nom>
+        <prenom>Jérémy</prenom>
+    </personne>
+
+    <personne id="6" nom="PERROUAULT" prenom="Alissa"></personne>
+
+    <!-- Balise auto-fermante -->
+    <personne id="7" nom="PERROUAULT" prenom="Dylan" />
+</personnes>
